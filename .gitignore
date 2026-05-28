@@ -6,6 +6,12 @@ __pycache__/
 # Binaries
 *.pt
 *.gz
+*.ckpt
+
+# CNN model files
+pandda_gemmi/cnn/event_score_quantiles.csv
+pandda_gemmi/cnn/model_build_config.yaml
+pandda_gemmi/cnn/model_event_config.yaml
 
 # C extensions
 *.so
