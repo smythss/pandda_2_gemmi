@@ -129,10 +129,16 @@ class MergeHighestBuildScore:
             in autobuilds.items()
             if highest_scoring_event_id[1] == score_and_event_id[1][1]
         }
-        # print(highest_scoring_event_autobuilds)
+        if highest_scoring_event_autobuilds:
+            return max(
+                highest_scoring_event_autobuilds,
+                key=lambda _path: highest_scoring_event_autobuilds[_path],
+            )
+
+        # Fallback when the highest-scoring event has no autobuilds.
         return max(
-            highest_scoring_event_autobuilds,
-            key=lambda _path: highest_scoring_event_autobuilds[_path],
+            autobuilds,
+            key=lambda _path: autobuilds[_path][0],
         )
 
 class MergeHighestBuildAndEventScore:
@@ -151,9 +157,15 @@ class MergeHighestBuildAndEventScore:
             in autobuilds.items()
             if highest_scoring_event_id[1] == score_and_event_id[1][1]
         }
-        # print(highest_scoring_event_autobuilds)
+        if highest_scoring_event_autobuilds:
+            return max(
+                highest_scoring_event_autobuilds,
+                key=lambda _path: -highest_scoring_event_autobuilds[_path],
+            )
+
+        # Fallback when the highest-scoring event has no autobuilds.
         return max(
-            highest_scoring_event_autobuilds,
-            key=lambda _path: -highest_scoring_event_autobuilds[_path],
+            autobuilds,
+            key=lambda _path: autobuilds[_path][0],
         )
 
